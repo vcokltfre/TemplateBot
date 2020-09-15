@@ -1,3 +1,4 @@
+import traceback
 import discord
 
 from discord.ext import commands
@@ -35,7 +36,8 @@ class Bot(commands.Bot):
         self.logger.info(f"Cog loading complete! (Total: {success + fail} | Loaded: {success} | Failed: {fail}){additional}")
 
     async def on_error(self, event: str):
-        self.logger.error(f"Runtime error: {event}")
+        self.logger.error(f"Runtime error: {event}\n{traceback.format_exc(limit=1750)}")
+        traceback.print_exc()
 
 
 def run(cogs: list, debug=False, prefix: list = ["!"], help_command = None):
