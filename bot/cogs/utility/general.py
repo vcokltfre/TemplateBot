@@ -17,7 +17,7 @@ class General(commands.Cog):
     async def cogs_group(self, ctx: commands.Context):
         """Perform actions such as reloading cogs"""
         if ctx.invoked_subcommand == None:
-            await ctx.channel.send(f"Usage: `!cogs <load | reload | unload> [list of cogs]`")
+            await ctx.send(f"Usage: `!cogs <load | reload | unload> [list of cogs]`")
 
     @cogs_group.command(name="load")
     async def load_cogs(self, ctx: commands.Context, *cognames):
