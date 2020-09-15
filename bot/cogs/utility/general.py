@@ -76,5 +76,9 @@ class General(commands.Cog):
         self.bot.logger.info(f"Shutting down {name}")
         await self.bot.close()
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+        self.bot.logger.info(f"{name} has started")
+
 def setup(bot: Bot):
     bot.add_cog(General(bot))
