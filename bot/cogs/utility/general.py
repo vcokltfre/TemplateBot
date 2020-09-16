@@ -1,3 +1,4 @@
+import time
 import discord
 from discord.ext import commands
 
@@ -75,6 +76,15 @@ class General(commands.Cog):
         """Make the bot logout"""
         self.bot.logger.info(f"Shutting down {name}")
         await self.bot.close()
+
+    @commands.command(name="ping")
+    @is_dev()
+    async def ping(self, ctx: commands.Context):
+        t_start = time.time()
+        m = await ctx.channel.send("Testing RTT for message editing.")
+        await m.edit(content="Testing...")
+        rtt = time.time() - t_start
+        await m.edit(content=f"Pong!\nMessage edit RTT: {round(rtt*1000, 2)}ms\nWebsocket Latency: {round(self.bot.latency*1000, 2)}ms")
 
     @commands.Cog.listener()
     async def on_ready(self):
