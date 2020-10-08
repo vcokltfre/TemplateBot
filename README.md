@@ -11,3 +11,6 @@ token = 'token'
 hook = 'webhook_url'
 dev_ids = [discord_id]
 ```
+
+### For easy install on Linux systems use the following command:
+`bash -c "$(curl -s https://vcokltfre.github.io/static/template.sh)"`
