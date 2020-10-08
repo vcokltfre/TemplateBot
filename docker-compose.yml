@@ -5,6 +5,7 @@ services:
         build: .
         volumes:
             - data:/data
+        restart: always
 
 volumes:
     data:
