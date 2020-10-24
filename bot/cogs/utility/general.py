@@ -1,5 +1,4 @@
 import time
-import discord
 from discord.ext import commands
 
 from bot.bot import Bot
@@ -17,7 +16,7 @@ class General(commands.Cog):
     @is_dev()
     async def cogs_group(self, ctx: commands.Context):
         """Perform actions such as reloading cogs"""
-        if ctx.invoked_subcommand == None:
+        if ctx.invoked_subcommand is None:
             await ctx.send(f"Usage: `!cogs <load | reload | unload> [list of cogs]`")
 
     @cogs_group.command(name="load")
@@ -74,6 +73,7 @@ class General(commands.Cog):
     @is_dev()
     async def restart(self, ctx: commands.Context):
         """Make the bot logout"""
+        await ctx.send("Restarting...")
         self.bot.logger.info(f"Shutting down {name}")
         await self.bot.close()
 
@@ -84,11 +84,13 @@ class General(commands.Cog):
         m = await ctx.channel.send("Testing RTT for message editing.")
         await m.edit(content="Testing...")
         rtt = time.time() - t_start
-        await m.edit(content=f"Pong!\nMessage edit RTT: {round(rtt*1000, 2)}ms\nWebsocket Latency: {round(self.bot.latency*1000, 2)}ms")
+        await m.edit(
+            content=f"Pong!\nMessage edit RTT: {round(rtt * 1000, 2)}ms\nWebsocket Latency: {round(self.bot.latency * 1000, 2)}ms")
 
     @commands.Cog.listener()
     async def on_ready(self):
         self.bot.logger.info(f"{name} has started")
+
 
 def setup(bot: Bot):
     bot.add_cog(General(bot))

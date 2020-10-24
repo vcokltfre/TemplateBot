@@ -37,11 +37,12 @@ class Logger:
         self.level = levels[log_level]
         self.mode = mode
 
-    def _send(self, data):
-        requests.post(hook, data=json.dumps(data), headers={"Content-Type":"application/json"})
+    @staticmethod
+    def _send(data):
+        requests.post(hook, data=json.dumps(data), headers={"Content-Type": "application/json"})
 
     def embed(self, logtype: str, content: str, colour: int):
-        data = {}
+        data = dict()
         data["username"] = self.name
         data["avatar_url"] = "https://vcokltfre.github.io/service.png"
         data["embeds"] = [{
@@ -57,7 +58,8 @@ class Logger:
         content = f"__**{logtype}**__ @ {timestamp}:\n{content}"
         data = {
             "username": self.name,
-            "content": content.replace("@", "@​") # Zero width space to remove mentions
+            "avatar_url": "https://vcokltfre.github.io/service.png",
+            "content": content.replace("@", "@​")  # Zero width space to remove mentions
         }
         self._send(data)
 
