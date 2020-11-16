@@ -44,7 +44,7 @@ class Logger:
     def embed(self, logtype: str, content: str, colour: int):
         data = dict()
         data["username"] = self.name
-        data["avatar_url"] = "https://vcokltfre.github.io/service.png"
+        data["avatar_url"] = "https://vcokltfre.github.io/static/img/service.png"
         data["embeds"] = [{
             "title": logtype,
             "description": content,
@@ -58,7 +58,7 @@ class Logger:
         content = f"__**{logtype}**__ @ {timestamp}:\n{content}"
         data = {
             "username": self.name,
-            "avatar_url": "https://vcokltfre.github.io/service.png",
+            "avatar_url": "https://vcokltfre.github.io/static/img/service.png",
             "content": content.replace("@", "@​")  # Zero width space to remove mentions
         }
         self._send(data)
