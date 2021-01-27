@@ -59,7 +59,12 @@ class Logger:
         data = {
             "username": self.name,
             "avatar_url": "https://vcokltfre.github.io/static/img/service.png",
-            "content": content.replace("@", "@​")  # Zero width space to remove mentions
+            "content": content,
+            "allowed_mentions": {
+                "users": False,
+                "roles": False,
+                "everyone": False
+            }
         }
         self._send(data)
 
