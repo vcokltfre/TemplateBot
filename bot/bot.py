@@ -35,7 +35,7 @@ class Bot(commands.Bot):
         additional = "" if not self.debug else " (DEBUG)"
         self.logger.info(f"Cog loading complete! (Total: {success + fail} | Loaded: {success} | Failed: {fail}){additional}")
 
-    async def on_error(self, event: str, **kwargs):
+    async def on_error(self, event: str, *args, **kwargs):
         self.logger.error(f"Runtime error: {event}\n{traceback.format_exc(limit=1750)}")
         traceback.print_exc()
 
