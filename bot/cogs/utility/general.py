@@ -89,7 +89,7 @@ class General(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        self.bot.logger.info(f"{name} has started")
+        self.bot.logger.info(f"{name} has started, logged in as {self.bot.user} ({self.bot.user.id})")
 
 
 def setup(bot: Bot):
